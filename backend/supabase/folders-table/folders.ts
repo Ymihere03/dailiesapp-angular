@@ -22,8 +22,8 @@ export async function storeOrUpdateFolderByUserID(
     const ctx = {name: "storeOrUpdateFolderByUserID"}
     // Create admin client using service_role key
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users
@@ -60,8 +60,8 @@ export async function getFoldersByFeed(
     const ctx = {name: "getFolder"}
     // Create admin client using service_role key
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users
@@ -132,8 +132,8 @@ export async function getFolders(
     const ctx = {name: "getFolder"}
     // Create admin client using service_role key
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users
@@ -330,8 +330,8 @@ export async function deleteFolderByUserID(
     const ctx = { name: "deleteFolderByUserID" };
     // Create admin client for secure operations
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users
@@ -463,8 +463,8 @@ export async function getRootFolderByUserID(
   try {
     // Create admin client using service_role key
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users

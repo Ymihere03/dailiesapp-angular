@@ -1,7 +1,7 @@
 'use server'
 
-import { createClient } from "@/utils/supabase/server"
-import { encrypt, decrypt } from '@/lib/encryption'
+import { createClient } from "../../utils/supabase/server"
+import { encrypt, decrypt } from '../../utils/encryption'
 import { SupabaseClient, User, createClient as createAdminClient } from "@supabase/supabase-js";
 
 export type Integration_account = {
@@ -226,8 +226,8 @@ export async function retrieveAndDecryptTokenByUserID(
   try {
     // Create admin client using service_role key
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     const { data , error } = await supabase

@@ -1,6 +1,6 @@
 'use server'
 
-import { completeTokenExchange, exchangeDropboxCodeAction } from '@/components/dropbox-server/auth-token-requests';
+import { completeTokenExchange, exchangeDropboxCodeAction } from '../backend/dropbox-server/auth-token-requests';
 import { redirect } from 'next/navigation';
 
 export async function GET(request: Request) {

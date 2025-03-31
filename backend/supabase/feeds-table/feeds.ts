@@ -139,8 +139,8 @@ export async function getFeedsByUserID(
     const ctx = { name: "getMyFeeds" };
     // Create admin client using service_role key
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users

@@ -38,8 +38,8 @@ export async function storeOrUpdateFileByUserID(
     const ctx = {name: "storeOrUpdateFileByUserID"}
     // Create admin client using service_role key
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users
@@ -170,8 +170,8 @@ export async function deleteFile(
     const ctx = { name: "deleteFolder" };
     // Create admin client for secure operations
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users
@@ -218,8 +218,8 @@ export async function getFilesByFolderIDs(
   try{
     // Create admin client using service_role key
     const supabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env["NEXT_PUBLIC_SUPABASE_URL"]!,
+      process.env["SUPABASE_SERVICE_ROLE_KEY"]!
     );
 
     // Check if user is active in auth.users

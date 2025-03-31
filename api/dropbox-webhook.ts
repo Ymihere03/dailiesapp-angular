@@ -1,4 +1,4 @@
-import { initiateCheckDropboxUpdates } from "@/components/dropbox-server/list-folder";
+import { initiateCheckDropboxUpdates } from "../backend/dropbox-server/list-folder";
 
 export const maxDuration = 30;
 
