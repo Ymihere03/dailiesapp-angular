@@ -1,7 +1,7 @@
 'use server';
 
 import { type SignInWithOAuthCredentials } from '@supabase/supabase-js';
-import { createClient } from "../../utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 // import { redirect } from 'next/dist/server/api-utils';
 import { redirect } from "next/navigation";
 
@@ -31,8 +31,8 @@ import { redirect } from "next/navigation";
 
 const getURL = () => {
   let url =
-    process?.env?.['NEXT_PUBLIC_OAUTH_SITE_URL'] ?? // Set this to your site URL in production env.
-    process?.env?.['NEXT_PUBLIC_OAUTH_VERCEL_URL'] ?? // Automatically set by Vercel.
+    process?.env?.NEXT_PUBLIC_OAUTH_SITE_URL ?? // Set this to your site URL in production env.
+    process?.env?.NEXT_PUBLIC_OAUTH_VERCEL_URL ?? // Automatically set by Vercel.
     'http://localhost:3000/auth/callback'
   // Make sure to include `https://` when not localhost.
   url = url.startsWith('http') ? url : `https://${url}`

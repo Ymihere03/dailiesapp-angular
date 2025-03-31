@@ -1,4 +1,4 @@
-import { signInWithoutRedirectAction } from "../backend/actions";
+import { signInWithoutRedirectAction } from "@/app/actions";
 
 
 export async function POST(request: Request) {
@@ -7,21 +7,9 @@ export async function POST(request: Request) {
 
   console.log("New API Sign-In");
 
-  if (typeof body !== 'object' || body === null) {
-    return new Response('Invalid request body', { status: 400 });
-  }
-
-  if (!('email' in body)) {
-    return new Response('Email is required', { status: 400 });
-  }
-
-  if (!('password' in body)) {
-    return new Response('Password is required', { status: 400 });
-  }
-
   const formData = new FormData();
-  formData.append('email', (body as {email: string}).email);
-  formData.append('password', (body as {password: string}).password);
+  formData.append('email', body.email);
+  formData.append('password', body.password);
 
   // Initiate the update check in an async call
   const data = await signInWithoutRedirectAction(formData);
