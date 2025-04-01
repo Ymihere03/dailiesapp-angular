@@ -3,12 +3,12 @@ import { exchangeDropboxCodeAction, completeTokenExchange } from './dropbox/auth
 export const router = express.Router()
 require('dotenv').config({ path: `.env${process.env['NODE_ENV']}` });
 
+// https://dailiesapp-angular-git-develop-benbdarling-gmailcoms-projects.vercel.app/api/dropbox/webhook
 router.route('/webhook')
     // Handle the dropbox challenge
     // This is only for endpoint verification and doesn't impact anything else
     .get((req, res) => {
-    const url = new URL(req.url);
-    const challenge = url.searchParams.get('challenge');
+      const challenge = req.query['challenge'];
     
     if (challenge) {
       res.set('Content-Type', 'text/plain').set('X-Content-Type-Options', 'nosniff')
