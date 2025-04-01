@@ -1,4 +1,4 @@
-import { storeOrUpdateToken } from "../supabase/integration-accounts-table/integration-accounts";
+//import { storeOrUpdateToken } from "../supabase/integration-accounts-table/integration-accounts";
 
 const DROPBOX_AUTH_URL = 'https://www.dropbox.com/oauth2/authorize';
 const DROPBOX_TOKEN_URL = 'https://api.dropboxapi.com/oauth2/token';
@@ -72,14 +72,6 @@ export async function exchangeDropboxCodeAction(data: { clientId: any;
   }
 }
 
-// export async function updateExpiredToken(currentURL: string) {
-//   await initiateDropboxAuthAction({
-//     clientId: process.env.NEXT_PUBLIC_DROPBOX_CLIENT_ID!,
-//     redirectUri: `${process.env.NEXT_PUBLIC_APP_URL}/api/dropbox-oauth2`,
-//     state: null
-//   });
-// }
-
 export async function completeTokenExchange(token: any) {
-  storeOrUpdateToken(token, 'dropbox');
+  //storeOrUpdateToken(token, 'dropbox');
 }
