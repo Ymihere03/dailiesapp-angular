@@ -4,8 +4,31 @@ export const router = express.Router()
 require('dotenv').config({ path: `.env${process.env['NODE_ENV']}` });
 
 // https://dailiesapp-angular-git-develop-benbdarling-gmailcoms-projects.vercel.app/api/dropbox/webhook
-router.route('/webhook')
-  .get((req, res) => {
+// router.route('/webhook')
+//   .get((req, res) => {
+//     // Handle the dropbox challenge
+//     // This is only for endpoint verification and doesn't impact anything else
+//     const challenge = req.query['challenge'];
+    
+//     if (challenge) {
+//       res.set('Content-Type', 'text/plain').set('X-Content-Type-Options', 'nosniff')
+//       res.status(200).send(challenge);
+//       return;
+//     }
+    
+//     res.send('');
+//   })
+//   .post((req, res) => {
+//     // Handle notify messages from dropbox
+//     // These occur after a user connects their dropbox account and updates their dropbox files
+//     const body = req.body();
+
+//     console.log("Dropbox update received!!", JSON.stringify(body, null, 2));
+    
+//     res.status(200).send({status:'ok'})
+//   })
+
+router.get('/webhook', (req, res) => {
     // Handle the dropbox challenge
     // This is only for endpoint verification and doesn't impact anything else
     const challenge = req.query['challenge'];
@@ -17,15 +40,6 @@ router.route('/webhook')
     }
     
     res.send('');
-  })
-  .post((req, res) => {
-    // Handle notify messages from dropbox
-    // These occur after a user connects their dropbox account and updates their dropbox files
-    const body = req.body();
-
-    console.log("Dropbox update received!!", JSON.stringify(body, null, 2));
-    
-    res.status(200).send({status:'ok'})
   })
 
 router.get('/oauth2', async (req, res) => {
