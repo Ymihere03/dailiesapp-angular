@@ -1,29 +1,31 @@
 import express from 'express'
 import { exchangeDropboxCodeAction, completeTokenExchange } from './dropbox/auth-token-requests';
-const router = express.Router()
+export const router = express.Router()
 
-router.get('/webhook', (req, res) => {
-  // Handle the dropbox challenge
-  // This is only for endpoint verification and doesn't impact anything else
-  const url = new URL(req.url);
-  const challenge = url.searchParams.get('challenge');
-  
-  if (challenge) {
-    res.set('Content-Type', 'text/plain').set('X-Content-Type-Options', 'nosniff')
-    res.status(200).send(challenge);
-    return;
-  }
-  
-  res.send('');
-})
+router.route('/webhook')
+    // Handle the dropbox challenge
+    // This is only for endpoint verification and doesn't impact anything else
+    .get((req, res) => {
+    const url = new URL(req.url);
+    const challenge = url.searchParams.get('challenge');
+    
+    if (challenge) {
+      res.set('Content-Type', 'text/plain').set('X-Content-Type-Options', 'nosniff')
+      res.status(200).send(challenge);
+      return;
+    }
+    
+    res.send('');
+  })
+  .post((req, res) => {
+    // Handle notify messages from dropbox
+    // These occur after a user connects their dropbox account and updates their dropbox files
+    const body = req.body();
 
-router.post('/webhook', (req, res) => {
-  const body = req.body();
-
-  console.log("Dropbox update received!!", JSON.stringify(body, null, 2));
-  
-  res.status(200).send({status:'ok'})
-})
+    console.log("Dropbox update received!!", JSON.stringify(body, null, 2));
+    
+    res.status(200).send({status:'ok'})
+  })
 
 router.get('/oauth2', async (req, res) => {
   const { searchParams } = new URL(req.url);
