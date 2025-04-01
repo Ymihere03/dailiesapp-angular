@@ -33,7 +33,7 @@ export class AppComponent {
     console.log("button clicked");
     const redirectURL = await initiateDropboxAuthAction({
       clientId: '0v2jbrmtxedf84h',
-      redirectUri: `http://localhost:4200/api/dropbox/oauth2`,
+      redirectUri: `https://dailiesapp-angular-git-develop-benbdarling-gmailcoms-projects.vercel.app/api/dropbox/oauth2`,
       state: null
     });
     console.log('redirected to ', redirectURL);
