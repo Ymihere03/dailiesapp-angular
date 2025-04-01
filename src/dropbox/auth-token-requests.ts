@@ -5,7 +5,7 @@ const DROPBOX_TOKEN_URL = 'https://api.dropboxapi.com/oauth2/token';
 
 export async function initiateDropboxAuthAction(data: { clientId: any;
                                                         redirectUri: any;
-                                                        state: any; }) {
+                                                        state: any; }): Promise<string> {
   const ctx = { name: 'dropbox-auth-initiate' };
   
   try {
@@ -20,7 +20,7 @@ export async function initiateDropboxAuthAction(data: { clientId: any;
     const authUrl = `${DROPBOX_AUTH_URL}?${params.toString()}`;
     console.info(ctx, 'Dropbox OAuth flow initiated');
     
-    return { url: authUrl };
+    return authUrl;
   } catch (error) {
     console.error(ctx, 'Failed to initiate Dropbox OAuth', { error });
     throw error;

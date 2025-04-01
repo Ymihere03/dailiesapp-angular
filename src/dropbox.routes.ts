@@ -1,6 +1,7 @@
 import express from 'express'
 import { exchangeDropboxCodeAction, completeTokenExchange } from './dropbox/auth-token-requests';
 export const router = express.Router()
+require('dotenv').config({ path: `.env${process.env['NODE_ENV']}` });
 
 router.route('/webhook')
     // Handle the dropbox challenge
@@ -28,9 +29,8 @@ router.route('/webhook')
   })
 
 router.get('/oauth2', async (req, res) => {
-  const { searchParams } = new URL(req.url);
-  const code = searchParams.get('code');
-  const state = searchParams.get('state');
+  const code = req.query['code'];
+  const state = req.query['state'];
 
   console.info("dropbox/oauth2 api");
   
@@ -48,19 +48,12 @@ router.get('/oauth2', async (req, res) => {
     grantCode: 'authorization_code'
   });
 
-  // Handle the token (store it securely, etc.)
-  // Redirect user to appropriate page
+  // Check if exchange was successful
   if (token) {
     console.info("token received...storing...");
     completeTokenExchange(token);
     res.redirect('/');
-    //return redirect("/protected");
-    // return new Response('', {
-    //   headers: { 'Content-Type': 'text/plain'},
-    //   status: 200
-    // })
   } else {
     res.status(400).send('Token Exchange Failed');
-    //return new Response('token exchange failed', { status: 400 });
   }
 });

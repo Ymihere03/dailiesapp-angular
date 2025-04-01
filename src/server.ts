@@ -39,6 +39,9 @@ app.use(
   }),
 );
 
+// API Subroutes
+app.use('/api/dropbox', dropbox);
+
 /**
  * Handle all other requests by rendering the Angular application.
  */
@@ -51,13 +54,6 @@ app.use('/**', (req, res, next) => {
     .catch(next);
 });
 
-app.get('/api/**', (req, res, next) => {
-  console.log('the response will be sent by the next function ...')
-  next()
-}, (req, res) => {
-  res.send('Hello from B!')
-});
-
 /**
  * Start the server if this module is the main entry point.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
@@ -68,8 +64,6 @@ if (isMainModule(import.meta.url)) {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
-
-app.use('/dropbox', dropbox);
 
 /**
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.

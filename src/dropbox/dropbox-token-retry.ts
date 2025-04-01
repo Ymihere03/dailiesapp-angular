@@ -1,5 +1,3 @@
-'use server'
-
 import { initiateDropboxAuthAction } from "./auth-token-requests";
 
 export async function checkForRetry(error: any, attempts: number) {
@@ -13,8 +11,8 @@ export async function checkForRetry(error: any, attempts: number) {
           const previousHRef = window.location.href;
           
           const { url } = await initiateDropboxAuthAction({
-            clientId: process.env["NEXT_PUBLIC_DROPBOX_CLIENT_ID"]!,
-            redirectUri: `${process.env["NEXT_PUBLIC_APP_URL"]}/api/dropbox-oauth2`,
+            clientId: process.env["PUBLIC_DROPBOX_CLIENT_ID"]!,
+            redirectUri: `${process.env["PUBLIC_APP_URL"]}/api/dropbox-oauth2`,
             state: null
           });
   

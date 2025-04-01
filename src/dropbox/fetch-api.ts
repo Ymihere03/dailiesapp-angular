@@ -1,5 +1,3 @@
-'use server'
-
 import { checkForRetry } from "./dropbox-token-retry";
 
 const DROPBOX_URL = 'https://api.dropboxapi.com/2/files';
