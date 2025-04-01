@@ -5,10 +5,10 @@ require('dotenv').config({ path: `.env${process.env['NODE_ENV']}` });
 
 // https://dailiesapp-angular-git-develop-benbdarling-gmailcoms-projects.vercel.app/api/dropbox/webhook
 router.route('/webhook')
+  .get((req, res) => {
     // Handle the dropbox challenge
     // This is only for endpoint verification and doesn't impact anything else
-    .get((req, res) => {
-      const challenge = req.query['challenge'];
+    const challenge = req.query['challenge'];
     
     if (challenge) {
       res.set('Content-Type', 'text/plain').set('X-Content-Type-Options', 'nosniff')
