@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "public": false,
+  "cleanUrls": true,
+  "name": "dailiesapp-angular",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/dailiesapp-angular/server/**"
+    }
+  }
+}
