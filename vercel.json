@@ -1,4 +1,10 @@
 {
   "version": 2,
-  "public": false
+  "public": false,
+  "devCommand": "pnpm run serve:ssr:dailiesapp-angular",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/dailiesapp-angular/browser/**"
+    }
+  }
 }
