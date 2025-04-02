@@ -1,12 +1,16 @@
 {
   "version": 2,
   "public": false,
-  "cleanUrls": true,
-  "name": "dailiesapp-angular",
-  "devCommand": "pnpm run serve:ssr:dailiesapp-angular",
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "dist/dailiesapp-angular/server/**"
-    }
-  }
+  "builds": [
+   {
+       "src": "./index.js",
+       "use": "@vercel/node"
+   }
+  ],
+  "routes": [
+   {
+       "src": "/(.*)",
+       "dest": "/"
+   }
+  ]
 }
