@@ -6,5 +6,8 @@
     "api/index.js": {
       "includeFiles": "dist/dailiesapp-angular/browser/**"
     }
-  }
+  },
+  "routes": [
+    { "src": "/(.*)", "dest": "dist/dailiesapp-angular/server/server.mjs"}
+  ]
 }
