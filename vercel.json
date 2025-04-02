@@ -3,6 +3,7 @@
   "public": false,
   "cleanUrls": true,
   "name": "dailiesapp-angular",
+  "devCommand": "pnpm run serve:ssr:dailiesapp-angular",
   "functions": {
     "api/index.js": {
       "includeFiles": "dist/dailiesapp-angular/server/**"

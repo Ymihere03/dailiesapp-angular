@@ -1,5 +1,5 @@
 import express from 'express'
-import { exchangeDropboxCodeAction, completeTokenExchange } from './api/dropbox/auth-token-requests';
+import { exchangeDropboxCodeAction, completeTokenExchange } from '../api/dropbox/auth-token-requests';
 export const router = express.Router()
 require('dotenv').config({ path: `.env${process.env['NODE_ENV']}` });
 

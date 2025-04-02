@@ -1,7 +1,7 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from "@angular/common";
-import { initiateDropboxAuthAction } from '../api/dropbox/auth-token-requests';
+import { initiateDropboxAuthAction } from '../../api/dropbox/auth-token-requests';
 import { Router } from '@angular/router';
 
 @Component({
