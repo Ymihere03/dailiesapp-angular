@@ -1,8 +1,80 @@
-const express = require("express");
+import {
+  AngularNodeAppEngine,
+  createNodeRequestHandler,
+  isMainModule,
+  writeResponseToNodeResponse,
+} from '@angular/ssr/node';
+import express from 'express';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createClient } from '@supabase/supabase-js';
+import { router as dropbox } from './dropbox.routes';
+
+const serverDistFolder = dirname(fileURLToPath(import.meta.url));
+const browserDistFolder = resolve(serverDistFolder, '../browser');
+
 const app = express();
+const angularApp = new AngularNodeAppEngine();
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+/**
+ * Example Express Rest API endpoints can be defined here.
+ * Uncomment and define endpoints as necessary.
+ *
+ * Example:
+ * ```ts
+ * app.get('/api/**', (req, res) => {
+ *   // Handle API request
+ * });
+ * ```
+ */
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+/**
+ * Serve static files from /browser
+ */
+app.use(
+  express.static(browserDistFolder, {
+    maxAge: '1y',
+    index: false,
+    redirect: false,
+  }),
+);
 
-module.exports = app;
+// API Subroutes
+app.use('/dropbox', dropbox);
+
+app.use('/test', (req, res) => {
+  res.send('test');
+});
+
+/**
+ * Handle all other requests by rendering the Angular application.
+ */
+app.use('/**', (req, res, next) => {
+  angularApp
+    .handle(req)
+    .then((response) =>
+      response ? writeResponseToNodeResponse(response, res) : next(),
+    )
+    .catch(next);
+});
+
+/**
+ * Start the server if this module is the main entry point.
+ * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
+ */
+console.log(`server: ${serverDistFolder}`, );
+console.log(`browser: ${browserDistFolder}`, );
+console.log(`trying start: ${import.meta.url}`, );
+console.log(`trying start: ${isMainModule(import.meta.url)}`, );
+console.log(`trying start: ${process.env['PORT']}`, );
+if (isMainModule(import.meta.url)) {
+  const port = process.env['PORT'] || 4000;
+  app.listen(port, () => {
+    console.log(`Node Express server listening on http://localhost:${port}`);
+  });
+}
+
+/**
+ * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
+ */
+export const reqHandler = createNodeRequestHandler(app);
