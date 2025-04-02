@@ -1,7 +1,7 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DOCUMENT, isPlatformBrowser, isPlatformServer } from "@angular/common";
-import { initiateDropboxAuthAction } from '../dropbox/auth-token-requests';
+import { initiateDropboxAuthAction } from '../api/dropbox/auth-token-requests';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,7 +33,7 @@ export class AppComponent {
     console.log("button clicked");
     const redirectURL = await initiateDropboxAuthAction({
       clientId: '0v2jbrmtxedf84h',
-      redirectUri: `http://localhost:4200/api/dropbox/oauth2`,
+      redirectUri: `https://dailiesapp-angular-git-develop-benbdarling-gmailcoms-projects.vercel.app/dropbox/oauth2`,
       state: null
     });
     console.log('redirected to ', redirectURL);

@@ -40,7 +40,7 @@ app.use(
 );
 
 // API Subroutes
-app.use('/api/dropbox', dropbox);
+app.use('/dropbox', dropbox);
 
 app.use('/test', (req, res) => {
   res.send('test');
@@ -73,10 +73,6 @@ if (isMainModule(import.meta.url)) {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
-const port = process.env['PORT'] || 4200;
-app.listen(port, () => {
-  console.log(`Node Express server listening on http://localhost:${port}`);
-});
 
 /**
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
