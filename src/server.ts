@@ -62,6 +62,7 @@ app.use('/**', (req, res, next) => {
  * Start the server if this module is the main entry point.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
+console.log(`server ORIGINAL`, );
 console.log(`server: ${serverDistFolder}`, );
 console.log(`browser: ${browserDistFolder}`, );
 console.log(`trying start: ${import.meta.url}`, );
