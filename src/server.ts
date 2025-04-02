@@ -42,6 +42,10 @@ app.use(
 // API Subroutes
 app.use('/api/dropbox', dropbox);
 
+app.use('/test', (req, res) => {
+  res.send('test');
+});
+
 /**
  * Handle all other requests by rendering the Angular application.
  */
@@ -58,12 +62,21 @@ app.use('/**', (req, res, next) => {
  * Start the server if this module is the main entry point.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
+console.log(`server: ${serverDistFolder}`, );
+console.log(`browser: ${browserDistFolder}`, );
+console.log(`trying start: ${import.meta.url}`, );
+console.log(`trying start: ${isMainModule(import.meta.url)}`, );
+console.log(`trying start: ${process.env['PORT']}`, );
 if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 4000;
   app.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
+const port = process.env['PORT'] || 4200;
+app.listen(port, () => {
+  console.log(`Node Express server listening on http://localhost:${port}`);
+});
 
 /**
  * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
