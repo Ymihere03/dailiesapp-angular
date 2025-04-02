@@ -1,10 +1,4 @@
 {
   "version": 2,
-  "public": false,
-  "routes": [
-   {
-       "src": "/(.*)",
-       "dest": "/"
-   }
-  ]
+  "public": false
 }
